@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        font-family: "Hina Mincho", serif;
+
+        background: #3e5151; /* fallback for old browsers */
+        background: -webkit-linear-gradient(
+          to right,
+          #decba4,
+          #3e5151
+        ); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(
+          to right,
+          #decba4,
+          #3e5151
+        ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      }
+      .grocery-container {
+        width: 580px;
+        min-height: 100vh;
+        background-color: #f7f6f2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+        margin-top: 0.3rem;
+      }
+
+      #entry {
+        width: 440px;
+        height: 60px;
+        margin-top: 1rem;
+        outline: none;
+        border: none;
+        border-bottom: 0.22rem solid #3e5151;
+        background: #f7f6f2;
+        font-size: 2em;
+      }
+
+      .material-icons {
+        font-size: 2em;
+      }
+      .grocery-list {
+        width: 100%;
+
+        margin-top: 2rem;
+        list-style: circle;
+      }
+      .grocery-list li {
+        width: 100%;
+        font-size: 2em;
+      }
+      .line-through {
+        text-decoration: line-through;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grocery-container">
+      <h1>Grocery List</h1>
+      <div>
+        <span class="material-icons"> checklist </span>
+        <input type="text" name="entry" id="entry" />
+      </div>
+      <div>
+        <ul class="grocery-list"></ul>
+      </div>
+    </div>
+  </body>
+  <script>
+    let listEntry = document.getElementById("entry");
+
+    const addEntry = (v) => {
+      let groceryList = document.querySelector(".grocery-list");
+      let listElement = document.createElement("li");
+      listElement.textContent = v;
+      groceryList.appendChild(listElement);
+      listElement.onclick = function () {
+        this.classList.add("line-through");
+      };
+    };
+    listEntry.addEventListener("keypress", (e) => {
+      if (e.key === "Enter") {
+        addEntry(listEntry.value);
+        listEntry.value = null;
+      }
+    });
+  </script>
+</html>
